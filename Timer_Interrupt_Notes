@@ -1,0 +1,23 @@
+/*
+  CONFIGURE FOR FLORA
+  *****************************************************************************************
+  ADAFRUIT Flora, ARDUINO Fio v3 (or any other board with ATmega32u4 running at 8MHz)
+
+  >> Timer1
+
+    Use of Timer1 interferes with PWM on pins 9 and 10.
+
+      void interruptSetup(){
+          TCCR1A = 0x00;
+          TCCR1B = 0x0C; // prescaler = 256
+          OCR1A = 0x3E;  // count to 62
+          TIMSK1 = 0x02;
+          sei();
+      }
+
+  The only other thing you will need is the correct ISR vector in the next step.
+
+      ISR(TIMER1_COMPA_vect)
+  *****************************************************************************************
+  
+   */
